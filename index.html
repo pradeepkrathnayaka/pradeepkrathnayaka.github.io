@@ -1,26 +1,36 @@
 <!DOCTYPE html>
-<html>
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  $("button").click(function(){
-    $("p").css("background-color", "yellow");
-  });
-});
-</script>
-</head>
+<html lang="en-US">
 <body>
+<div id="piechart"></div>
 
-<h2>This is a heading</h2>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-<p style="background-color:#ff0000">This is a paragraph.</p>
-<p style="background-color:#00ff00">This is a paragraph.</p>
-<p style="background-color:#0000ff">This is a paragraph.</p>
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
 
-<p>This is a paragraph.</p>
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['Java', 18],
+  ['JavaScript', 16],
+  ['C#', 12],
+  ['HTML', 2],
+  ['PHP', 8],
+  ['Python', 8],
+  ['C++', 8]
+]);
 
-<button>Set background-color of p</button>
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'Most Popular Programming Languages ', 'width':550, 'height':400};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>
 
 </body>
 </html>
